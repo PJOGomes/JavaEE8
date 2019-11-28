@@ -1,9 +1,6 @@
 package org.PauloGomes.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -18,6 +15,12 @@ public class Todo {
     private boolean isCompleted;
     private LocalDate dateCompleted;
     private LocalDate dateCreated;
+
+    //Automate dateCreated Generation
+    @PrePersist
+    private void init() {
+        setDateCreated(LocalDate.now());
+    }
 
     public Long getId() {
         return id;
